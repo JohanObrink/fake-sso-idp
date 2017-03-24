@@ -1,0 +1,22 @@
+{
+  "name": "af-kompetenskartlaggning-idp",
+  "version": "0.0.0",
+  "description": "Fake idp endpoint for testing",
+  "main": "lib/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Iteam1337/af-kompetenskartlaggning-idp.git"
+  },
+  "author": "Johan Öbrink <johan.obrink@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/Iteam1337/af-kompetenskartlaggning-idp/issues"
+  },
+  "homepage": "https://github.com/Iteam1337/af-kompetenskartlaggning-idp#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "xml-crypto": "^0.9.0"
+  }
+}
