@@ -17,6 +17,8 @@
   "homepage": "https://github.com/Iteam1337/af-kompetenskartlaggning-idp#readme",
   "dependencies": {
     "express": "^4.15.2",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "xml-crypto": "^0.9.0"
   }
 }
