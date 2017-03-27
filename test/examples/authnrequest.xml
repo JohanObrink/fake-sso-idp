@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<samlp:AuthnRequest
+  xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+  ID="_77b3c286feebbe4c30d1"
+  Version="2.0"
+  IssueInstant="2017-03-24T16:21:55.257Z"
+  ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+  AssertionConsumerServiceURL="http://localhost:3000/auth/saml/callback"
+  Destination="http://localhost:7000/sso">
+  <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">http://localhost:3000/auth/saml/metadata.xml</saml:Issuer>
+  <samlp:NameIDPolicy
+    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+    Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+    AllowCreate="true"/>
+</samlp:AuthnRequest>
