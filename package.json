@@ -1,10 +1,13 @@
 {
-  "name": "af-kompetenskartlaggning-idp",
+  "name": "fake-sso-idp",
   "version": "0.0.0",
   "description": "Fake idp endpoint for testing",
-  "main": "lib/server.js",
+  "main": "lib/idp.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint lib/**/*.js test/**/*.js && mocha test/**/*,js",
+    "patch-release": "npm version patch && npm publish && git push origin master --follow-tags",
+    "minor-release": "npm version minor && npm publish && git push origin master --follow-tags",
+    "major-release": "npm version major && npm publish && git push origin master --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -25,14 +28,21 @@
     "extend": "^3.0.0",
     "ip": "^1.1.5",
     "lodash": "^4.17.4",
+    "milligram": "^1.3.0",
     "moment": "^2.18.1",
+    "purecss": "^0.6.2",
     "serve-favicon": "^2.4.2",
     "xml-crypto": "^0.9.0",
     "xml2json": "^0.11.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1",
     "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
     "gulp-mocha": "^4.1.0",
     "mocha": "^3.2.0",
     "proxyquire": "^1.7.11",

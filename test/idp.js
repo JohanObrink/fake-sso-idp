@@ -26,7 +26,7 @@ describe('idp', () => {
       options = {
         serviceProvider: {
           destination: 'http://localhost:3000/auth/saml/callback',
-          metadata: 'http://localhost:3000/auth/saml/metadata.xml',
+          metadata: 'http://localhost:3000/auth/saml/metadata.xml'
         },
         users: [
           {
