@@ -4,7 +4,7 @@
   "description": "Fake idp endpoint for testing",
   "main": "lib/idp.js",
   "scripts": {
-    "test": "eslint lib/**/*.js test/**/*.js && mocha test/**/*,js",
+    "test": "eslint lib/**/*.js test/**/*.js && mocha test/**/*.js",
     "patch-release": "npm version patch && npm publish && git push origin master --follow-tags",
     "minor-release": "npm version minor && npm publish && git push origin master --follow-tags",
     "major-release": "npm version major && npm publish && git push origin master --follow-tags"
@@ -46,7 +46,6 @@
     "mocha": "^3.2.0",
     "proxyquire": "^1.7.11",
     "sinon": "^2.1.0",
-    "sinon-as-promised": "^4.0.3",
     "sinon-chai": "^2.9.0"
   }
 }

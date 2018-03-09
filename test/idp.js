@@ -2,11 +2,13 @@ const chai = require('chai')
 const expect = chai.expect
 const {stub} = require('sinon')
 const proxyquire = require('proxyquire')
+const {readFileSync} = require('fs')
+const {deflateRawSync} = require('zlib')
 chai.use(require('sinon-chai'))
 
 describe('idp', () => {
   describe('#create', () => {
-    let idp, options, app, ip, authResponse
+    let idp, options, app, ip
     beforeEach(() => {
       app = {
         set: stub(),
@@ -17,10 +19,6 @@ describe('idp', () => {
       }
       ip = {
         address: stub().returns('192.168.1.1')
-      }
-      authResponse = {
-        parse: stub(),
-        build: stub()
       }
 
       options = {
@@ -45,8 +43,7 @@ describe('idp', () => {
       }
       const {create} = proxyquire(`${process.cwd()}/lib/idp`, {
         'express': stub().returns(app),
-        'ip': ip,
-        './auth-response': authResponse
+        'ip': ip
       })
 
       idp = create(options).listen(7000)
@@ -79,12 +76,15 @@ describe('idp', () => {
       let authnRequest, req, res, sso
       beforeEach(() => {
         authnRequest = {
-          SAMLRequest: 'someDeflatedBase64String',
+          SAMLRequest: deflateRawSync(readFileSync(`${__dirname}/examples/authnrequest.xml`)),
           SigAlg: 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
           Signature: 'someSignatureValue'
         }
         req = {
-          query: authnRequest
+          query: authnRequest,
+          session: {
+            save: stub()
+          }
         }
         res = {
           status: stub(),
@@ -93,25 +93,25 @@ describe('idp', () => {
         res.status.returns(res)
         sso = app.get.withArgs('/sso').firstCall.args[1]
       })
-      it('parses the request', () => {
-        authResponse.parse.resolves({})
+      it('renders login page if no user in session', () => {
         return sso(req, res)
           .then(() => {
-            expect(authResponse.parse)
+            expect(res.render)
               .calledOnce
-              .calledWith(authnRequest)
+              .calledWith('login')
           })
       })
-      it('calls render with the correct parameters', () => {
-        const request = {inResponseTo: 'abc123'}
-        const expected = Object.assign({error: {}, username: '', password: ''}, idp.options, request)
-        authResponse.parse.resolves(request)
+      it('renders postback if user in session', () => {
+        req.session.user = {
+          id: 'abc123',
+          attributes: []
+        }
 
         return sso(req, res)
           .then(() => {
             expect(res.render)
               .calledOnce
-              .calledWith('login', expected)
+              .calledWith('postResponse')
           })
       })
     })
