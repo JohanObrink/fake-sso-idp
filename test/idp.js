@@ -1,9 +1,9 @@
 const chai = require('chai')
 const expect = chai.expect
-const {stub} = require('sinon')
+const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
-const {readFileSync} = require('fs')
-const {deflateRawSync} = require('zlib')
+const { readFileSync } = require('fs')
+const { deflateRawSync } = require('zlib')
 chai.use(require('sinon-chai'))
 
 describe('idp', () => {
@@ -41,9 +41,9 @@ describe('idp', () => {
           }
         ]
       }
-      const {create} = proxyquire(`${process.cwd()}/lib/idp`, {
-        'express': stub().returns(app),
-        'ip': ip
+      const { create } = proxyquire(`${process.cwd()}/lib/idp`, {
+        express: stub().returns(app),
+        ip: ip
       })
 
       idp = create(options).listen(7000)

@@ -14,7 +14,7 @@ To set up a server on http://localhost:7000 which answers Authn requests from
 http://localhost:3000:
 
 ```js
-const {create} = require('fake-sso-idp')
+const { create } = require('fake-sso-idp')
 const app = create({
   serviceProvider: {
     destination: 'http://localhost:3000/auth/saml/callback',
