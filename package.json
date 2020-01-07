@@ -1,6 +1,6 @@
 {
   "name": "fake-sso-idp",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Fake idp endpoint for testing",
   "main": "lib/idp.js",
   "scripts": {
