@@ -114,6 +114,19 @@ describe('idp', () => {
               .calledWith('postResponse')
           })
       })
+      it('relayste in request', () => {
+        req.session.user = {
+          id: 'abc123',
+          attributes: []
+        }
+        req.query.RelayState = 'mypath/view/1'
+
+        return sso(req, res)
+          .then(() => {
+            expect(res.render.args[0][1].relayState)
+              .to.equal('mypath/view/1')
+          })
+      })
     })
   })
 })
