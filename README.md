@@ -1,6 +1,6 @@
-# fake-sso-idp
-
-A test implementation of a SAML SSO IDP
+# In this fork fake-sso-idp
+A test implementation of a SAML SSO IDP 
+with support of RelayState parameter.
 
 ## Install
 
